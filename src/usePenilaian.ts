@@ -84,6 +84,8 @@ export const usePenilaian = () => {
     dispatch({
       type: `aspek_penilaian_${idx}`,
       payload: {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
         ...state[`aspek_penilaian_${idx}`],
         [`mahasiswa_${i}`]: Number(e.target.value),
       },

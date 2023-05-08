@@ -22,7 +22,7 @@ function App() {
     <Container maxW="container.xl">
       <Center flexDir="column" my={4}>
         <Heading>Aplikasi Penilaian Mahasiswa</Heading>
-        <SimpleGrid my={4} w="61%" ml={28} alignItems="center" columns={4}>
+        <SimpleGrid my={4} w="61%" ml={32} alignItems="center" columns={4}>
           <Heading fontSize="16px">Aspek penilaian 1</Heading>
           <Heading pl={2} fontSize="16px">
             Aspek penilaian 2
