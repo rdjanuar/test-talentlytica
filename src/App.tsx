@@ -50,7 +50,7 @@ function App() {
               px={4}
               w="70%"
             >
-              <Text>Mahasiswa {i + 1}</Text>
+              <Text whiteSpace="nowrap">Mahasiswa {i + 1}</Text>
               {Array.from({ length: 4 }).map((_, idx) => (
                 <Select
                   key={idx}
