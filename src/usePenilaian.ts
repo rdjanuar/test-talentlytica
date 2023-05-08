@@ -1,6 +1,19 @@
 import React, { useReducer } from "react";
 
-const KEY_MAHASISWA = {
+type Mahasiswa = {
+  mahasiswa_1: number;
+  mahasiswa_2: number;
+  mahasiswa_3: number;
+  mahasiswa_4: number;
+  mahasiswa_5: number;
+  mahasiswa_6: number;
+  mahasiswa_7: number;
+  mahasiswa_8: number;
+  mahasiswa_9: number;
+  mahasiswa_10: number;
+};
+
+const KEY_MAHASISWA: Mahasiswa = {
   mahasiswa_1: 1,
   mahasiswa_2: 1,
   mahasiswa_3: 1,
@@ -28,36 +41,10 @@ const initialState = {
   },
 };
 
-type Mahasiswa = {
-  mahasiswa_1: number;
-  mahasiswa_2: number;
-  mahasiswa_3: number;
-  mahasiswa_4: number;
-  mahasiswa_5: number;
-  mahasiswa_6: number;
-  mahasiswa_7: number;
-  mahasiswa_8: number;
-  mahasiswa_9: number;
-  mahasiswa_10: number;
+type ActionType = {
+  type: `aspek_penilaian_${number}`;
+  payload: Mahasiswa;
 };
-
-type ActionType =
-  | {
-      type: "aspek_penilaian_1";
-      payload: Mahasiswa;
-    }
-  | {
-      type: "aspek_penilaian_2";
-      payload: Mahasiswa;
-    }
-  | {
-      type: "aspek_penilaian_3";
-      payload: Mahasiswa;
-    }
-  | {
-      type: "aspek_penilaian_4";
-      payload: Mahasiswa;
-    };
 
 function reducer(state: typeof initialState, action: ActionType) {
   switch (action.type) {
@@ -89,52 +76,15 @@ function reducer(state: typeof initialState, action: ActionType) {
 export const usePenilaian = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const handlePenilaianOne = (
+  const handlePenilaian = (
     e: React.ChangeEvent<HTMLSelectElement>,
+    idx: number,
     i: number
   ) => {
     dispatch({
-      type: `aspek_penilaian_1`,
+      type: `aspek_penilaian_${idx}`,
       payload: {
-        ...state.aspek_penilaian_1,
-        [`mahasiswa_${i}`]: Number(e.target.value),
-      },
-    });
-  };
-
-  const handlePenilaianTwo = (
-    e: React.ChangeEvent<HTMLSelectElement>,
-    i: number
-  ) => {
-    dispatch({
-      type: `aspek_penilaian_2`,
-      payload: {
-        ...state.aspek_penilaian_2,
-        [`mahasiswa_${i}`]: Number(e.target.value),
-      },
-    });
-  };
-  const handlePenilaianThree = (
-    e: React.ChangeEvent<HTMLSelectElement>,
-    i: number
-  ) => {
-    dispatch({
-      type: `aspek_penilaian_3`,
-      payload: {
-        ...state.aspek_penilaian_3,
-        [`mahasiswa_${i}`]: Number(e.target.value),
-      },
-    });
-  };
-
-  const handlePenilaianFour = (
-    e: React.ChangeEvent<HTMLSelectElement>,
-    i: number
-  ) => {
-    dispatch({
-      type: `aspek_penilaian_4`,
-      payload: {
-        ...state.aspek_penilaian_4,
+        ...state[`aspek_penilaian_${idx}`],
         [`mahasiswa_${i}`]: Number(e.target.value),
       },
     });
@@ -142,9 +92,7 @@ export const usePenilaian = () => {
 
   return {
     state,
-    handlePenilaianOne,
-    handlePenilaianTwo,
-    handlePenilaianThree,
-    handlePenilaianFour,
+    handlePenilaian,
   };
 };
+

@@ -14,13 +14,7 @@ import { usePenilaian } from "./usePenilaian";
 import { useState, Fragment } from "react";
 
 function App() {
-  const {
-    handlePenilaianOne,
-    state,
-    handlePenilaianFour,
-    handlePenilaianThree,
-    handlePenilaianTwo,
-  } = usePenilaian();
+  const { state, handlePenilaian } = usePenilaian();
 
   const [result, setResult] = useState({});
 
@@ -57,46 +51,19 @@ function App() {
               w="70%"
             >
               <Text>Mahasiswa {i + 1}</Text>
-              <Select
-                onChange={(e) => handlePenilaianOne(e, i + 1)}
-                placeholder="Select option"
-              >
-                {Array.from({ length: 10 }).map((_, i) => (
-                  <option value={i + 1} key={i + 1}>
-                    {i + 1}
-                  </option>
-                ))}
-              </Select>
-              <Select
-                placeholder="Select option"
-                onChange={(e) => handlePenilaianTwo(e, i + 1)}
-              >
-                {Array.from({ length: 10 }).map((_, i) => (
-                  <option value={i + 1} key={i + 1}>
-                    {i + 1}
-                  </option>
-                ))}
-              </Select>
-              <Select
-                placeholder="Select option"
-                onChange={(e) => handlePenilaianThree(e, i + 1)}
-              >
-                {Array.from({ length: 10 }).map((_, i) => (
-                  <option value={i + 1} key={i + 1}>
-                    {i + 1}
-                  </option>
-                ))}
-              </Select>
-              <Select
-                placeholder="Select option"
-                onChange={(e) => handlePenilaianFour(e, i + 1)}
-              >
-                {Array.from({ length: 10 }).map((_, i) => (
-                  <option value={i + 1} key={i + 1}>
-                    {i + 1}
-                  </option>
-                ))}
-              </Select>
+              {Array.from({ length: 4 }).map((_, idx) => (
+                <Select
+                  key={idx}
+                  onChange={(e) => handlePenilaian(e, idx + 1, i + 1)}
+                  placeholder="Select option"
+                >
+                  {Array.from({ length: 10 }).map((_, i) => (
+                    <option value={i + 1} key={i + 1}>
+                      {i + 1}
+                    </option>
+                  ))}
+                </Select>
+              ))}
             </Box>
           </Fragment>
         ))}
